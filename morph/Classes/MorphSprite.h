@@ -11,14 +11,17 @@
 
 #include "cocos2d.h"
 
-class MorphSprite : public cocos2d::CCSprite, public cocos2d::CCTargetedTouchDelegate {
+class MorphSprite : public cocos2d::CCSprite, public cocos2d::CCTouchDelegate {
     typedef cocos2d::CCSprite super;
     
     int _timeUniformLocation=0;
     float _totalTime=0;
     
-    int _touchPositionXUniformLocation=0; int _touchPositionYUniformLocation=0;
-    cocos2d::CCPoint _touchPosition{.5f,.5f};
+    int _touch1PositionXUniformLocation=0; int _touch1PositionYUniformLocation=0;
+    cocos2d::CCPoint _touch1Position{-1.f,-1.f};
+    
+    int _touch2PositionXUniformLocation=0; int _touch2PositionYUniformLocation=0;
+    cocos2d::CCPoint _touch2Position{-1.f,-1.f};
     
     void initShader(const char *fshFileName);
     void update(float dt);
@@ -28,10 +31,11 @@ class MorphSprite : public cocos2d::CCSprite, public cocos2d::CCTargetedTouchDel
     
     //touches
     cocos2d::CCPoint convertToShaderSpace(const cocos2d::CCPoint & loc, bool & onSpriteArea);
-    virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
-    virtual void ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
-    virtual void ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
-    virtual void ccTouchCancelled(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+    // optional
+    virtual void ccTouchesBegan(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchesMoved(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchesCancelled(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
     
 public:
     static MorphSprite* create(const char *pszFileName, const char *fshFileName);

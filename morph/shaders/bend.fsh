@@ -6,8 +6,11 @@ varying vec2 v_texCoord;
 uniform sampler2D u_texture;
 uniform float u_time;
 
-uniform float u_touchPosX;
-uniform float u_touchPosY;
+uniform float u_touch1PosX;
+uniform float u_touch1PosY;
+
+uniform float u_touch2PosX;
+uniform float u_touch2PosY;
 
 const float speed = 2.0;
 const float bendFactor = 0.2;

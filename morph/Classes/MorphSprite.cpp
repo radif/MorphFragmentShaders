@@ -26,7 +26,7 @@ MorphSprite* MorphSprite::create(const char *pszFileName, const char *fshFileNam
 
 void MorphSprite::onEnter(){
     super::onEnter();
-    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
+    CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this, 0);
 }
 
 void MorphSprite::onExit(){
@@ -45,21 +45,17 @@ void MorphSprite::initShader(const char *fshFileName){
         program->initWithVertexShaderByteArray(ccPositionTextureA8Color_vert, fragmentSource);
         setShaderProgram(program);
         program->release();
-        
         program->addAttribute(kCCAttributeNamePosition, kCCVertexAttrib_Position);
-        program->addAttribute(kCCAttributeNameTexCoord, kCCVertexAttrib_TexCoords);
-
-        
+        program->addAttribute(kCCAttributeNameTexCoord, kCCVertexAttrib_TexCoords);        
         program->link();
         program->updateUniforms();
-
-        
-
-        
         _timeUniformLocation = glGetUniformLocation(program->getProgram(), "u_time");
         
-        _touchPositionXUniformLocation= glGetUniformLocation(program->getProgram(), "u_touchPosX");
-        _touchPositionYUniformLocation= glGetUniformLocation(program->getProgram(), "u_touchPosY");
+        _touch1PositionXUniformLocation= glGetUniformLocation(program->getProgram(), "u_touch1PosX");
+        _touch1PositionYUniformLocation= glGetUniformLocation(program->getProgram(), "u_touch1PosY");
+        
+        _touch2PositionXUniformLocation= glGetUniformLocation(program->getProgram(), "u_touch2PosX");
+        _touch2PositionYUniformLocation= glGetUniformLocation(program->getProgram(), "u_touch2PosY");
         
         scheduleUpdate();
 
@@ -75,8 +71,11 @@ void MorphSprite::update(float dt)
     
     glUniform1f(_timeUniformLocation, _totalTime);
     
-    glUniform1f(_touchPositionXUniformLocation, _touchPosition.x);
-    glUniform1f(_touchPositionYUniformLocation, _touchPosition.y);
+    glUniform1f(_touch1PositionXUniformLocation, _touch1Position.x);
+    glUniform1f(_touch1PositionYUniformLocation, _touch1Position.y);
+    
+    glUniform1f(_touch2PositionXUniformLocation, _touch2Position.x);
+    glUniform1f(_touch2PositionYUniformLocation, _touch2Position.y);
     
     
 }
@@ -88,23 +87,61 @@ cocos2d::CCPoint MorphSprite::convertToShaderSpace(const cocos2d::CCPoint & loc,
     retVal.x/=sz.width;
     retVal.y/=sz.height;
     
+    retVal.y=1.0f-retVal.y;
+    
     onSpriteArea=(!(retVal.x>1.f || retVal.x<0.f || retVal.y>1.f || retVal.y<0.f));
     if (!onSpriteArea)
-        retVal={.5,.5};
+        retVal={-1.f,-1.f};
     
-    retVal.y=1.0f-retVal.y;
     return retVal;
 }
-bool MorphSprite::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
+
+void MorphSprite::ccTouchesBegan(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent){
     bool isTouching(false);
-    _touchPosition=convertToShaderSpace(pTouch->getLocation(), isTouching);
-        //std::cout<<_touchPosition.x << ", "<< _touchPosition.y<<"\n";
-    return isTouching;
+    int counter(0);
+    for (CCSetIterator i(pTouches->begin());i!=pTouches->end();++i) {
+        CCTouch *pTouch((CCTouch *)(*i));
+        switch (counter) {
+            case 0:
+                _touch1Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
+                _touch2Position={-1.f,-1.f};
+                break;
+            case 1:
+                _touch2Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
+                break;
+            default:
+                break;
+        }
+        counter++;
+    }
+    
 }
-void MorphSprite::ccTouchMoved(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){
+void MorphSprite::ccTouchesMoved(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent){
     bool isTouching(false);
-    _touchPosition=convertToShaderSpace(pTouch->getLocation(), isTouching);
+    int counter(0);
+    for (CCSetIterator i(pTouches->begin());i!=pTouches->end();++i) {
+        CCTouch *pTouch((CCTouch *)(*i));
+        switch (counter) {
+            case 0:
+                _touch1Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
+                _touch2Position={-1.f,-1.f};
+                break;
+            case 1:
+                _touch2Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
+                break;
+            default:
+                break;
+        }
+        counter++;
+    }
 }
-void MorphSprite::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){}
-void MorphSprite::ccTouchCancelled(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent){}
+void MorphSprite::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent){
+    _touch1Position={-1.f,-1.f};
+     _touch2Position={-1.f,-1.f};
+}
+void MorphSprite::ccTouchesCancelled(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent){
+    ccTouchesEnded(pTouches, pEvent);
+}
+
+
 
