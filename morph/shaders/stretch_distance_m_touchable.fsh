@@ -71,8 +71,11 @@ void main()
     vec2 coords=v_texCoord;
 
     if (doubleTouch){
-        float distance1=distance(touchPont1,vec2(.5,.5))*.8;
-        float distance2=distance(touchPont2,vec2(.5,.5))*.8;
+
+        vec2 midpoint=vec2((touchPont1.x + touchPont2.x)*.5, (touchPont1.y + touchPont2.y)*.5);
+        
+        float distance1=distance(touchPont1,midpoint)*.8;
+        float distance2=distance(touchPont2,midpoint)*.8;
 
         vec2 relativeDistance1=relativeDistance(touchPont1Inverted,distance1);
         vec2 relativeDistance2=relativeDistance(touchPont2Inverted,distance2);
