@@ -225,6 +225,7 @@
 		497875E316D8798D0006A14D /* worry.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 497875D616D8798D0006A14D /* worry.fsh */; };
 		497875E416D879A20006A14D /* bend.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 497875CA16D8798D0006A14D /* bend.fsh */; };
 		497875EA16D9E30F0006A14D /* feathered_edges.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 497875E916D9E30F0006A14D /* feathered_edges.fsh */; };
+		49B8DCC216DA842800AC2B08 /* static_tv_outline.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 49B8DCC116DA842800AC2B08 /* static_tv_outline.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -687,6 +688,7 @@
 		497875D516D8798D0006A14D /* wave_still_m_touchable.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = wave_still_m_touchable.fsh; sourceTree = "<group>"; };
 		497875D616D8798D0006A14D /* worry.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = worry.fsh; sourceTree = "<group>"; };
 		497875E916D9E30F0006A14D /* feathered_edges.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = feathered_edges.fsh; sourceTree = "<group>"; };
+		49B8DCC116DA842800AC2B08 /* static_tv_outline.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = static_tv_outline.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1617,6 +1619,7 @@
 				497875D316D8798D0006A14D /* turnface1_touchable.fsh */,
 				497875D416D8798D0006A14D /* turnface_touchable.fsh */,
 				497875D516D8798D0006A14D /* wave_still_m_touchable.fsh */,
+				49B8DCC116DA842800AC2B08 /* static_tv_outline.fsh */,
 				497875D616D8798D0006A14D /* worry.fsh */,
 			);
 			path = shaders;
@@ -1672,6 +1675,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B8DCC216DA842800AC2B08 /* static_tv_outline.fsh in Resources */,
 				496E39EE16DA089E00FCCFDF /* black_and_white.fsh in Resources */,
 				497875D816D8798D0006A14D /* bend_touchable.fsh in Resources */,
 				496E39EC16DA069000FCCFDF /* blur.fsh in Resources */,
