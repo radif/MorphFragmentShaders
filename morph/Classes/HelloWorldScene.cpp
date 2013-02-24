@@ -8,6 +8,7 @@ using namespace CocosDenshion;
 static std::vector<const char *> _shaders{
     "stretch_distance_m_touchable.fsh",
     "stretch_outside_m_touchable.fsh",
+    "feathered_edges.fsh",
     "wave_still_m_touchable.fsh",
     "stretch_non-alpha_m_touchable.fsh",
     "worry.fsh",
@@ -18,7 +19,7 @@ static std::vector<const char *> _shaders{
     "lens_touchable.fsh",
     "turnface_touchable.fsh",
     "turnface1_touchable.fsh",
-    "stretch_inside_touchable.fsh"
+    "stretch_inside_touchable.fsh",
 };
 
 CCScene* HelloWorld::scene()
