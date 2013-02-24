@@ -20,6 +20,8 @@ static std::vector<const char *> _shaders{
     "turnface_touchable.fsh",
     "turnface1_touchable.fsh",
     "stretch_inside_touchable.fsh",
+    "blur.fsh",
+    "black_and_white.fsh",
 };
 
 CCScene* HelloWorld::scene()

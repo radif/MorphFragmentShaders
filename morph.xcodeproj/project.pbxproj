@@ -209,6 +209,8 @@
 		4907625116D6BB9A0082D8A3 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4907625016D6BB9A0082D8A3 /* HelloWorldScene.cpp */; };
 		4907625B16D6C3970082D8A3 /* MorphSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4907625916D6C3970082D8A3 /* MorphSprite.cpp */; };
 		4907648D16D7FA420082D8A3 /* number.png in Resources */ = {isa = PBXBuildFile; fileRef = 4907648C16D7FA420082D8A3 /* number.png */; };
+		496E39EC16DA069000FCCFDF /* blur.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 496E39EB16DA069000FCCFDF /* blur.fsh */; };
+		496E39EE16DA089E00FCCFDF /* black_and_white.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 496E39ED16DA089E00FCCFDF /* black_and_white.fsh */; };
 		497875D816D8798D0006A14D /* bend_touchable.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 497875CB16D8798D0006A14D /* bend_touchable.fsh */; };
 		497875D916D8798D0006A14D /* lens_touchable.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 497875CC16D8798D0006A14D /* lens_touchable.fsh */; };
 		497875DA16D8798D0006A14D /* stretch_distance_m_touchable.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 497875CD16D8798D0006A14D /* stretch_distance_m_touchable.fsh */; };
@@ -669,6 +671,8 @@
 		4907625916D6C3970082D8A3 /* MorphSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MorphSprite.cpp; path = Classes/MorphSprite.cpp; sourceTree = "<group>"; };
 		4907625A16D6C3970082D8A3 /* MorphSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MorphSprite.h; path = Classes/MorphSprite.h; sourceTree = "<group>"; };
 		4907648C16D7FA420082D8A3 /* number.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = number.png; path = Resources/number.png; sourceTree = "<group>"; };
+		496E39EB16DA069000FCCFDF /* blur.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = blur.fsh; sourceTree = "<group>"; };
+		496E39ED16DA089E00FCCFDF /* black_and_white.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = black_and_white.fsh; sourceTree = "<group>"; };
 		497875CA16D8798D0006A14D /* bend.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = bend.fsh; sourceTree = "<group>"; };
 		497875CB16D8798D0006A14D /* bend_touchable.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = bend_touchable.fsh; sourceTree = "<group>"; };
 		497875CC16D8798D0006A14D /* lens_touchable.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lens_touchable.fsh; sourceTree = "<group>"; };
@@ -1605,6 +1609,8 @@
 				497875CE16D8798D0006A14D /* stretch_inside_touchable.fsh */,
 				497875CF16D8798D0006A14D /* stretch_non-alpha_m_touchable.fsh */,
 				497875E916D9E30F0006A14D /* feathered_edges.fsh */,
+				496E39EB16DA069000FCCFDF /* blur.fsh */,
+				496E39ED16DA089E00FCCFDF /* black_and_white.fsh */,
 				497875D016D8798D0006A14D /* stretch_outside_m_touchable.fsh */,
 				497875D116D8798D0006A14D /* stretch_revert_touchable.fsh */,
 				497875D216D8798D0006A14D /* stretch_touchable.fsh */,
@@ -1666,7 +1672,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496E39EE16DA089E00FCCFDF /* black_and_white.fsh in Resources */,
 				497875D816D8798D0006A14D /* bend_touchable.fsh in Resources */,
+				496E39EC16DA069000FCCFDF /* blur.fsh in Resources */,
 				497875E416D879A20006A14D /* bend.fsh in Resources */,
 				497875EA16D9E30F0006A14D /* feathered_edges.fsh in Resources */,
 				497875D916D8798D0006A14D /* lens_touchable.fsh in Resources */,
