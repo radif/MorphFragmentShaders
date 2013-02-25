@@ -47,7 +47,11 @@ void main()
     vec2 touchPont2Inverted=vec2(1.0-u_touch2PosX, 1.0-u_touch2PosY);
     vec2 touchPont2=vec2(u_touch2PosX, u_touch2PosY);
     
-    
+    //prevent the image from disappearing when touched in the middle
+    if(touchPont1==vec2(.5,.5) || touchPont2==vec2(.5,.5) ){
+        touchPont1=undefVec;
+        touchPont2=undefVec;
+    }
     //returning texture if no touches detected
     if(touchPont1==undefVec && touchPont2==undefVec){
         
