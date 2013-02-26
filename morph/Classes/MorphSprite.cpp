@@ -96,52 +96,43 @@ cocos2d::CCPoint MorphSprite::convertToShaderSpace(const cocos2d::CCPoint & loc,
     return retVal;
 }
 
-void MorphSprite::ccTouchesBegan(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent){
-    bool isTouching(false);
-    int counter(0);
-    for (CCSetIterator i(pTouches->begin());i!=pTouches->end();++i) {
-        CCTouch *pTouch((CCTouch *)(*i));
-        switch (counter) {
-            case 0:
-                _touch1Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
-                _touch2Position={-1.f,-1.f};
-                break;
-            case 1:
-                _touch2Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
-                break;
-            default:
-                break;
+void MorphSprite::convertTouchesIntoShaderPoints(cocos2d::CCSet *pTouches, bool ended){
+    if (ended) {
+        _touch1Position={-1.f,-1.f};
+        _touch2Position={-1.f,-1.f};
+    }else{
+        bool isTouching(false);
+        int counter(0);
+        for (CCSetIterator i(pTouches->begin());i!=pTouches->end();++i) {
+            CCTouch *pTouch((CCTouch *)(*i));
+            switch (counter) {
+                case 0:
+                    _touch1Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
+                    _touch2Position={-1.f,-1.f};
+                    break;
+                case 1:
+                    _touch2Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
+                    break;
+                default:
+                    break;
+            }
+            counter++;
         }
-        counter++;
     }
-    
+}
+void MorphSprite::ccTouchesBegan(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent){
+    convertTouchesIntoShaderPoints(pTouches);
 }
 void MorphSprite::ccTouchesMoved(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent){
-    bool isTouching(false);
-    int counter(0);
-    for (CCSetIterator i(pTouches->begin());i!=pTouches->end();++i) {
-        CCTouch *pTouch((CCTouch *)(*i));
-        switch (counter) {
-            case 0:
-                _touch1Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
-                _touch2Position={-1.f,-1.f};
-                break;
-            case 1:
-                _touch2Position=convertToShaderSpace(pTouch->getLocation(), isTouching);
-                break;
-            default:
-                break;
-        }
-        counter++;
-    }
+    convertTouchesIntoShaderPoints(pTouches);
 }
 void MorphSprite::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent){
-    _touch1Position={-1.f,-1.f};
-     _touch2Position={-1.f,-1.f};
+    convertTouchesIntoShaderPoints(pTouches,true);
 }
 void MorphSprite::ccTouchesCancelled(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent){
     ccTouchesEnded(pTouches, pEvent);
 }
+
 
 
 

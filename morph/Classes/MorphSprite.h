@@ -31,6 +31,8 @@ class MorphSprite : public cocos2d::CCSprite, public cocos2d::CCTouchDelegate {
     
     //touches
     cocos2d::CCPoint convertToShaderSpace(const cocos2d::CCPoint & loc, bool & onSpriteArea);
+    void convertTouchesIntoShaderPoints(cocos2d::CCSet *pTouches, bool ended=false);
+
     // optional
     virtual void ccTouchesBegan(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
     virtual void ccTouchesMoved(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
