@@ -22,6 +22,7 @@ static std::vector<const char *> _shaders{
     "stretch_inside_touchable.fsh",
     "blur.fsh",
     "black_and_white.fsh",
+    "twirl.fsh",
     "static_tv_outline.fsh",
 };
 
